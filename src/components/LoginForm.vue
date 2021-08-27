@@ -20,9 +20,10 @@
       >
     </div>
 
-    <button @click='validateUsuario'>
-      Entrar
-    </button>
+    <ButtonLarge 
+      value='Entrar'
+      :handleClick='validateUsuario' 
+    />
     
     <RouterLink to='/'>
       Criar uma conta
@@ -33,6 +34,8 @@
 <script>
 import { mapState } from 'vuex';
 
+import ButtonLarge from '@/components/ButtonLarge.vue';
+
 export default {
   name: 'LoginForm',
   data() {
@@ -42,6 +45,9 @@ export default {
         password: '',
       }
     }
+  },
+  components: {
+    ButtonLarge,
   },
   computed: {
     ...mapState(['user']),
@@ -97,34 +103,7 @@ export default {
   }
 
   button {
-    width: 100%;
-    margin: 1rem 0;
-    border: none;
     background: #68C891;
-    color: #FFF;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
-    font-weight: 600; 
-    cursor: pointer;
-    transition: filter .2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
   }
-
-  a {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: rgba($color: #000000, $alpha: .3);
-    transition: color .2s;
-
-    &:hover {
-      color: #68C891;
-    }
-  }
-
 }
 </style>

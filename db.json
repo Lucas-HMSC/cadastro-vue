@@ -7,6 +7,14 @@
       "github": "Lucas-HMSC",
       "email": "lucashms.carvalho@gmail.com",
       "password": "123"
+    },
+    {
+      "id": "signa@net.br",
+      "name": "Signa",
+      "telephone": "(11) 9 1122-3344",
+      "github": "signa",
+      "email": "signa@net.br",
+      "password": "123"
     }
   ]
 }

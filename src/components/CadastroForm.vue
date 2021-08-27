@@ -1,6 +1,14 @@
 <template>
   <section class="container">
     <h2>Cadastrar</h2>
+
+    <!-- <InputLabel 
+      label='Nome Completo'
+      model='name'
+      type='text'
+      placeholder='Nome Sobrenome'
+    /> -->
+
     <div class="input-group">
       <label for='nome'>Nome Completo</label>
       <input 
@@ -52,9 +60,10 @@
       >
     </div>
 
-    <button @click='register'>
-      Cadastrar
-    </button>
+    <ButtonLarge 
+      value='Cadastrar'
+      :handleClick='register'
+    />
     
     <RouterLink to='/login'>
       Ja sou cadastrado!
@@ -65,12 +74,25 @@
 <script>
 import { mapFields } from '@/helpers.js';
 
+// import InputLabel from '@/components/InputLabel.vue';
+import ButtonLarge from '@/components/ButtonLarge.vue';
+
 export default {
   name: 'CadastroForm',
+  components: {
+    ButtonLarge
+  },
   data() {
     return {
       telefoneMask: '',
     }
+  },
+  computed: {
+    ...mapFields({
+      fields: ['name', 'telephone', 'github', 'email', 'password'],
+      base: 'user',
+      mutation: 'UPDATE_USER'
+    }),
   },
   watch: {
     telefoneMask() {
@@ -82,13 +104,6 @@ export default {
         this.telefoneMask = this.telefoneMask.slice(0, 11);
       }
     },
-  },
-  computed: {
-    ...mapFields({
-      fields: ['name', 'telephone', 'github', 'email', 'password'],
-      base: 'user',
-      mutation: 'UPDATE_USER'
-    }),
   },
   methods: {
     maskTelephone(value) {
@@ -148,34 +163,7 @@ export default {
   }
 
   button {
-    width: 100%;
-    margin: 1rem 0;
-    border: none;
-    background: #68C891;
-    color: #FFF;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
-    font-weight: 600; 
-    cursor: pointer;
-    transition: filter .2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
+    background: #68C891;;
   }
-
-  a {
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    color: rgba($color: #000000, $alpha: .3);
-    transition: color .2s;
-
-    &:hover {
-      color: #68C891;
-    }
-  }
-
 }
 </style>

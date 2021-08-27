@@ -41,19 +41,25 @@
         disabled
       >
     </div>
-    <button @click='sair'>
-      Sair
-    </button>
+    <ButtonLarge 
+      value='Sair'
+      :handleClick='sair' 
+    />
   </section>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
+import ButtonLarge from '@/components/ButtonLarge.vue';
+
 export default {
   name: 'LoginForm',
   computed: {
     ...mapState(['user']),
+  },
+  components: {
+    ButtonLarge,
   },
   methods: {
     async sair() {
@@ -102,21 +108,7 @@ export default {
   }
 
   button {
-    width: 100%;
-    margin: 1rem 0;
-    border: none;
     background: #DA514D;
-    color: #FFF;
-    padding: 0.8rem;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
-    font-weight: 600; 
-    cursor: pointer;
-    transition: filter .2s;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
   }
 
   a {
