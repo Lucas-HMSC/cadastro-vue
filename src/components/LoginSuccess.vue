@@ -1,13 +1,13 @@
 <template>
   <section class="container">
-    <h2>Bem vindo(a) {{ usuario.nome }}</h2>
+    <h2>Bem vindo(a) {{ user.name }}</h2>
     <div class="input-group">
       <label for='nome'>Nome Completo</label>
       <input 
         name='nome'   
         id='nome'
         type="text"
-        :value='usuario.nome'
+        :value='user.name'
         disabled
       >
     </div>
@@ -17,7 +17,7 @@
         name='telefone'   
         id='telefone'
         type="text"
-        :value='usuario.telefone'
+        :value='user.telephone'
         disabled
       >
     </div>
@@ -27,7 +27,7 @@
         name='github'   
         id='github'
         type="text"
-        :value='usuario.github'
+        :value='user.github'
         disabled
       >
     </div>
@@ -37,7 +37,7 @@
         name='email'   
         id='email'
         type="email"
-        :value='usuario.email'
+        :value='user.email'
         disabled
       >
     </div>
@@ -48,34 +48,18 @@
 </template>
 
 <script>
-import { api } from '@/services.js';
+import { mapState } from 'vuex';
 
 export default {
   name: 'LoginForm',
-  data() {
-    return {
-      usuario: {},
-    }
-  },
   computed: {
-    id() {
-      return this.$route.params.id;
-    },
+    ...mapState(['user']),
   },
   methods: {
-    puxarUsuario() {
-      api
-        .get(`/users/${this.id}`)
-        .then((response) => {
-          this.usuario = response.data;
-        })
-    },
-    sair() {
+    async sair() {
+      await this.$store.dispatch('logout');
       this.$router.push({name: 'Login'});
     },
-  },
-  created() {
-    this.puxarUsuario();
   },
 }
 </script>

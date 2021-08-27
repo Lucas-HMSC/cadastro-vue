@@ -1,20 +1,12 @@
 {
   "users": [
     {
-      "nome": "Lucas Carvalho",
-      "telefone": "(12) 1234-5678",
+      "id": "lucashms.carvalho@gmail.com",
+      "name": "Lucas Carvalho",
+      "telephone": "(11) 1 1111-1111",
       "github": "Lucas-HMSC",
-      "email": "lucas.carvalho@signa.net.br",
-      "senha": "123",
-      "id": "lucas.carvalho@signa.net.br"
-    },
-    {
-      "nome": "Signa Teste",
-      "telefone": "(12) 9 1122-3344",
-      "github": "Signa",
-      "email": "signa@signa.br",
-      "senha": "123",
-      "id": "signa@signa.br"
+      "email": "lucashms.carvalho@gmail.com",
+      "password": "123"
     }
   ]
 }

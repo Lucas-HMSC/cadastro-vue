@@ -7,7 +7,7 @@
         name='nome'   
         id='nome'
         type="text"
-        v-model='usuario.nome'
+        v-model='name'
         placeholder="Nome Sobrenome"
       >
     </div>
@@ -27,7 +27,7 @@
         name='github'   
         id='github'
         type="text"
-        v-model='usuario.github'
+        v-model='github'
         placeholder="Username"
       >
     </div>
@@ -37,7 +37,7 @@
         name='email'   
         id='email'
         type="email"
-        v-model='usuario.email'
+        v-model='email'
         placeholder="email@email.com"
       >
     </div>
@@ -47,12 +47,12 @@
         name='senha'   
         id='senha'
         type="password"
-        v-model='usuario.senha'
+        v-model='password'
         placeholder="******"
       >
     </div>
 
-    <button @click='cadastrar'>
+    <button @click='register'>
       Cadastrar
     </button>
     
@@ -63,19 +63,12 @@
 </template>
 
 <script>
-import { api } from '@/services.js';
+import { mapFields } from '@/helpers.js';
 
 export default {
   name: 'CadastroForm',
   data() {
     return {
-      usuario: {
-        nome: '',
-        telefone: '',
-        github: '',
-        email: '',
-        senha: '',
-      },
       telefoneMask: '',
     }
   },
@@ -83,42 +76,30 @@ export default {
     telefoneMask() {
       this.telefoneMask = this.telefoneMask.replace(/\D/g, '');
       if (this.telefoneMask.length === 11) {
-        this.telefoneMask = this.mascaraTelefone(this.telefoneMask);
-        this.usuario.telefone = this.telefoneMask;
+        this.telefoneMask = this.maskTelephone(this.telefoneMask);
+        this.telephone = this.telefoneMask;
       } else if (this.telefoneMask.length > 11) {
         this.telefoneMask = this.telefoneMask.slice(0, 11);
       }
     },
   },
+  computed: {
+    ...mapFields({
+      fields: ['name', 'telephone', 'github', 'email', 'password'],
+      base: 'user',
+      mutation: 'UPDATE_USER'
+    }),
+  },
   methods: {
-    mascaraTelefone(value) {
+    maskTelephone(value) {
       return value.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/g,'($1) $2 $3-$4');
     },
-    validarCampos() {
-      if (
-        this.usuario.nome.length > 0 &&
-        this.usuario.telefone.length > 0 &&
-        this.usuario.github.length > 0 &&
-        this.usuario.email.length > 0 &&
-        this.usuario.senha.length > 0 
-      ) return true;
-      else return false;
-    },
-    atribuirId() {
-      this.usuario.id = this.usuario.email;
-    },
-    loginAutomatico() {
-      this.$router.push({name: 'LoginSuccess', params: {id: this.usuario.id}});
-    },
-    cadastrar() {
-      const validacao = this.validarCampos();
-      if (validacao) {
-        this.atribuirId();
-        api
-          .post('/users', this.usuario)
-          .then(() => {
-            this.loginAutomatico();
-          })
+    async register() {
+      try {
+        await this.$store.dispatch('createUser', this.$store.state.user);
+        this.$router.push({name: 'LoginSuccess', params: {id: this.$store.state.user.id}});
+      } catch(e) {
+        console.log(e);
       }
     },
   },

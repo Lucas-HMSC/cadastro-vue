@@ -7,7 +7,7 @@
         name='email'   
         id='email'
         type="email"
-        v-model='usuario.email'
+        v-model='userInput.email'
       >
     </div>
     <div class="input-group">
@@ -16,11 +16,11 @@
         name='senha'   
         id='senha'
         type="password"
-        v-model='usuario.senha'
+        v-model='userInput.password'
       >
     </div>
 
-    <button @click='validarUsuario'>
+    <button @click='validateUsuario'>
       Entrar
     </button>
     
@@ -31,41 +31,29 @@
 </template>
 
 <script>
-import { api } from '@/services.js';
+import { mapState } from 'vuex';
 
 export default {
   name: 'LoginForm',
   data() {
     return {
-      usuario: {
+      userInput: {
         email: '',
-        senha: '',
-      },
+        password: '',
+      }
     }
   },
+  computed: {
+    ...mapState(['user']),
+  },
   methods: {
-    validarCampos() {
-      if (
-        this.usuario.email.length > 0 &&
-        this.usuario.senha.length > 0 
-      ) return true;
-      else return false;
-    },
-    validarUsuario() {
-      const validacao = this.validarCampos();
-      if (validacao) {
-        api
-        .get(`/users/${this.usuario.email}`)
-        .then((response) => {
-          if (this.usuario.senha === response.data.senha) this.entrar();
-        })
-        .catch(() => {
-          console.log('Usuário não encontrado.');
-        });
+    async validateUsuario() {
+      try {
+        await this.$store.dispatch('login', this.userInput);
+        if (this.user.id) this.$router.push({name: 'LoginSuccess', params: { id: this.user.id }});
+      } catch(e) {
+        console.log(e);
       }
-    },
-    entrar() {
-      this.$router.push({name: 'LoginSuccess', params: { id: this.usuario.email }});
     },
   },
 }
