@@ -8,6 +8,7 @@
         id='nome'
         type="text"
         v-model='usuario.nome'
+        placeholder="Nome Sobrenome"
       >
     </div>
     <div class="input-group">
@@ -16,7 +17,8 @@
         name='telefone'   
         id='telefone'
         type="text"
-        v-model='usuario.telefone'
+        v-model='telefoneMask'
+        placeholder="(12) 9 1234-5678"
       >
     </div>
     <div class="input-group">
@@ -26,6 +28,7 @@
         id='github'
         type="text"
         v-model='usuario.github'
+        placeholder="Username"
       >
     </div>
     <div class="input-group">
@@ -35,6 +38,7 @@
         id='email'
         type="email"
         v-model='usuario.email'
+        placeholder="email@email.com"
       >
     </div>
     <div class="input-group">
@@ -44,6 +48,7 @@
         id='senha'
         type="password"
         v-model='usuario.senha'
+        placeholder="******"
       >
     </div>
 
@@ -71,9 +76,24 @@ export default {
         email: '',
         senha: '',
       },
+      telefoneMask: '',
     }
   },
+  watch: {
+    telefoneMask() {
+      this.telefoneMask = this.telefoneMask.replace(/\D/g, '');
+      if (this.telefoneMask.length === 11) {
+        this.telefoneMask = this.mascaraTelefone(this.telefoneMask);
+        this.usuario.telefone = this.telefoneMask;
+      } else if (this.telefoneMask.length > 11) {
+        this.telefoneMask = this.telefoneMask.slice(0, 11);
+      }
+    },
+  },
   methods: {
+    mascaraTelefone(value) {
+      return value.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/g,'($1) $2 $3-$4');
+    },
     validarCampos() {
       if (
         this.usuario.nome.length > 0 &&
@@ -138,6 +158,10 @@ export default {
       &:focus {
         outline: none;
         border-color: #68C891;
+      }
+
+      &::placeholder {
+        color: rgba($color: #000000, $alpha: .3);
       }
     }
   }
