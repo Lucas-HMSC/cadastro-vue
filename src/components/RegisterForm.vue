@@ -1,6 +1,8 @@
 <template>
   <section class="container">
-    <h2>Cadastrar</h2>
+    <TitleForm 
+      text='Cadastrar' 
+    />
 
     <InputLabel 
       label='Nome Completo'
@@ -51,12 +53,14 @@
 <script>
 import InputLabel from '@/components/InputLabel.vue';
 import ButtonLarge from '@/components/ButtonLarge.vue';
+import TitleForm from '@/components/TitleForm.vue';
 
 export default {
   name: 'RegisterForm',
   components: {
     ButtonLarge,
-    InputLabel
+    InputLabel,
+    TitleForm
   },
   methods: {
     async register() {
@@ -76,11 +80,6 @@ export default {
   background: #FFF;
   border-radius: 0.5rem;
   padding: 1rem;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 
   button {
     background: #68C891;;

@@ -1,6 +1,8 @@
 <template>
   <section class="container">
-    <h2>Entrar</h2>
+    <TitleForm 
+      text='Entrar'
+    />
 
     <InputLabel 
       label='Email'
@@ -32,20 +34,14 @@ import { mapState } from 'vuex';
 
 import ButtonLarge from '@/components/ButtonLarge.vue';
 import InputLabel from '@/components/InputLabel.vue';
+import TitleForm from '@/components/TitleForm.vue';
 
 export default {
   name: 'LoginForm',
-  data() {
-    return {
-      userInput: {
-        email: '',
-        password: '',
-      }
-    }
-  },
   components: {
     ButtonLarge,
-    InputLabel
+    InputLabel,
+    TitleForm
   },
   computed: {
     ...mapState(['user']),
@@ -68,11 +64,6 @@ export default {
   background: #FFF;
   border-radius: 0.5rem;
   padding: 1rem;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 
   button {
     background: #68C891;
