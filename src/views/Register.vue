@@ -6,19 +6,19 @@
     </section>
     <section class="sidebar-right">
       <InputPromo />
-      <CadastroForm />
+      <RegisterForm />
     </section>
   </div>
 </template>
 
 <script>
-import CadastroForm from '@/components/CadastroForm.vue';
+import RegisterForm from '@/components/RegisterForm.vue';
 import InputPromo from '@/components/InputPromo.vue';
 
 export default {
   name: 'Register',
   components: {
-    CadastroForm,
+    RegisterForm,
     InputPromo,
   }
 }

@@ -15,6 +15,14 @@
       "github": "signa",
       "email": "signa@net.br",
       "password": "123"
+    },
+    {
+      "id": "usuario@teste.com",
+      "name": "Usuário Teste",
+      "telephone": "(12) 9 1122-3344",
+      "github": "usuario-teste",
+      "email": "usuario@teste.com",
+      "password": "111"
     }
   ]
 }

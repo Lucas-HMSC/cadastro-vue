@@ -23,6 +23,9 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    updateUser(context, payload) {
+      context.commit('UPDATE_USER', payload);
+    },
     createUser(context, payload) {
       if ( payload.name.length > 0 &&
            payload.telephone.length > 0 &&

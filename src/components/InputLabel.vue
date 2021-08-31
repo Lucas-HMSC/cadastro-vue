@@ -3,14 +3,13 @@
     <label>{{ label }}</label>
     <input 
       :type='type'
-      v-model='name'
+      v-model='text'
       :placeholder='placeholder'
     >
   </div>
 </template>
 
 <script>
-import { mapFields } from '@/helpers.js';
 
 export default {
   name: 'InputLabel',
@@ -20,32 +19,30 @@ export default {
     type: String,
     placeholder: String,
   },
-  data() {
-    return {
-      telefoneMask: '',
-    }
-  },
+  data: () => ({
+    text: '',
+  }),
   computed: {
-    ...mapFields({
-      fields: ['name', 'telephone', 'github', 'email', 'password'],
-      base: 'user',
-      mutation: 'UPDATE_USER'
-    }),
+    
   },
   watch: {
-    telefoneMask() {
-      this.telefoneMask = this.telefoneMask.replace(/\D/g, '');
-      if (this.telefoneMask.length === 11) {
-        this.telefoneMask = this.maskTelephone(this.telefoneMask);
-        this.telephone = this.telefoneMask;
-      } else if (this.telefoneMask.length > 11) {
-        this.telefoneMask = this.telefoneMask.slice(0, 11);
-      }
+    text() {
+      if (this.model === 'name') this.$store.dispatch('updateUser', { name: this.text });
+      if (this.model === 'telephone') this.maskTelephone();
+      if (this.model === 'github') this.$store.dispatch('updateUser', { github: this.text });
+      if (this.model === 'email') this.$store.dispatch('updateUser', { email: this.text });
+      if (this.model === 'password') this.$store.dispatch('updateUser', { password: this.text });
     },
   },
   methods: {
-    maskTelephone(value) {
-      return value.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/g,'($1) $2 $3-$4');
+    maskTelephone() {
+      this.text = this.text.replace(/\D/g, '');
+      if (this.text.length === 11) {
+        this.text = this.text.replace(/(\d{2})(\d{1})(\d{4})(\d{4})/g,'($1) $2 $3-$4');
+        this.$store.dispatch('updateUser', { telephone: this.text });
+      } else if (this.text.length > 11) {
+        this.text = this.text.slice(0, 11);
+      }
     },
   },
 }
