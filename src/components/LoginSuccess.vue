@@ -31,6 +31,7 @@
 
     <ButtonLarge 
       value='Sair'
+      styles='background: #DA514D'
       :handleClick='sair' 
     />
   </section>
@@ -67,9 +68,5 @@ export default {
   background: #FFF;
   border-radius: 0.5rem;
   padding: 1rem;
-
-  button {
-    background: #DA514D;
-  }
 }
 </style>

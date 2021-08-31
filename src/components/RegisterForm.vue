@@ -80,9 +80,5 @@ export default {
   background: #FFF;
   border-radius: 0.5rem;
   padding: 1rem;
-
-  button {
-    background: #68C891;;
-  }
 }
 </style>
