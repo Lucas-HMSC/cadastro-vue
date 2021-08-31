@@ -26,7 +26,7 @@ export default new Vuex.Store({
     updateUser(context, payload) {
       context.commit('UPDATE_USER', payload);
     },
-    createUser(context, payload) {
+    async createUser(context, payload) {
       if ( payload.name.length > 0 &&
            payload.telephone.length > 0 &&
            payload.github.length > 0 &&
@@ -34,8 +34,8 @@ export default new Vuex.Store({
            payload.password.length > 0 
       ) {
         context.commit('UPDATE_USER', { id: payload.email });
-        return api.post('/users', payload);
-      }
+        await api.post('/users', payload);
+      } 
     },
     async login(context, { email, password }) {
       if ( email.length > 0 && password.length > 0) {

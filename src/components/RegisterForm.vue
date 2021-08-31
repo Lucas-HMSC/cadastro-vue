@@ -66,7 +66,7 @@ export default {
     async register() {
       try {
         await this.$store.dispatch('createUser', this.$store.state.user);
-        this.$router.push({name: 'LoginSuccess', params: {id: this.$store.state.user.id}});
+        if (this.$store.state.user.id) this.$router.push({name: 'LoginSuccess', params: {id: this.$store.state.user.id}});
       } catch(e) {
         console.log(e);
       }
