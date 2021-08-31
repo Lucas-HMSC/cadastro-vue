@@ -12,8 +12,14 @@
 }
 
 #app {
-  background: #EE817E url('./assets/bg.png');
+  background: #EE817E url('./assets/bg.png') fixed;
   font: 400 16px Arial, Helvetica, sans-serif;
+}
+
+@media screen and (max-width: 32rem) {
+  #app {
+    background: #EE817E url('./assets/bg-mobile.png');
+  }
 }
 
 a {

@@ -53,4 +53,44 @@ export default {
     max-width: 30rem;
   }
 }
+
+@media screen and (max-width: 61rem) {
+  .wrapper {
+    max-width: 50rem;
+    gap: 1rem;
+  }
+}
+
+@media screen and (max-width: 51rem) {
+  .wrapper {
+    grid-template-columns: auto;
+
+    .sidebar-left {
+      margin-top: 1rem;
+      align-items: center;
+
+      p {
+        text-align: center;
+      }
+    }
+
+    .sidebar-right {
+      margin: 2rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: 32rem) {
+  .wrapper {
+    padding: 1rem;
+    overflow: scroll;
+  }
+}
+
+@media screen and (max-width: 25rem) {
+  .wrapper .sidebar-left h1 {
+      font-size: 2rem;
+      text-align: center;
+  }
+}
 </style>

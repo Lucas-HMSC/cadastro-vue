@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <strong>Try it free 7 days</strong>
-    <span>&nbsp;then $20/mo.thereafter</span>
+    <span>&nbsp;then $20/month</span>
   </div>
 </template>
 

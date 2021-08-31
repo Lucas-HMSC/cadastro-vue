@@ -16,4 +16,10 @@ export default {
   border-radius: 0.5rem;
   padding: 1rem;
 }
+
+@media screen and (max-width: 51rem) {
+  .container {
+    margin-bottom: 2rem;
+  }
+}
 </style>
