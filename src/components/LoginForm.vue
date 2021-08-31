@@ -1,24 +1,20 @@
 <template>
   <section class="container">
     <h2>Entrar</h2>
-    <div class="input-group">
-      <label for='email'>Email</label>
-      <input 
-        name='email'   
-        id='email'
-        type="email"
-        v-model='userInput.email'
-      >
-    </div>
-    <div class="input-group">
-      <label for='senha'>Senha</label>
-      <input 
-        name='senha'   
-        id='senha'
-        type="password"
-        v-model='userInput.password'
-      >
-    </div>
+
+    <InputLabel 
+      label='Email'
+      model='email'
+      type='email'
+      placeholder='email@email.com'
+    />
+
+    <InputLabel 
+      label='Senha'
+      model='password'
+      type='password'
+      placeholder='******'
+    />
 
     <ButtonLarge 
       value='Entrar'
@@ -35,6 +31,7 @@
 import { mapState } from 'vuex';
 
 import ButtonLarge from '@/components/ButtonLarge.vue';
+import InputLabel from '@/components/InputLabel.vue';
 
 export default {
   name: 'LoginForm',
@@ -48,6 +45,7 @@ export default {
   },
   components: {
     ButtonLarge,
+    InputLabel
   },
   computed: {
     ...mapState(['user']),
@@ -55,7 +53,7 @@ export default {
   methods: {
     async validateUsuario() {
       try {
-        await this.$store.dispatch('login', this.userInput);
+        await this.$store.dispatch('login', this.user);
         if (this.user.id) this.$router.push({name: 'LoginSuccess', params: { id: this.user.id }});
       } catch(e) {
         console.log(e);
@@ -74,32 +72,6 @@ export default {
   h2 {
     text-align: center;
     margin-bottom: 1rem;
-  }
-
-  .input-group {
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.8rem;
-
-    label {
-      flex: 1;
-      color: rgba($color: #000000, $alpha: .3);
-      font-size: 0.8rem;
-    }
-
-    input {
-      flex: 1;
-      padding: 0.5rem;
-      border-radius: 0.5rem;
-      border: 1px solid rgba($color: #000000, $alpha: .3);
-      transition: border-color .2s;
-      font: 400 16px Arial, Helvetica, sans-serif;
-
-      &:focus {
-        outline: none;
-        border-color: #68C891;
-      }
-    }
   }
 
   button {
