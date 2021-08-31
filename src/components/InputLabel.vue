@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 
 export default {
   name: 'InputLabel',
@@ -35,14 +36,15 @@ export default {
   },
   watch: {
     text() {
-      if (this.model === 'name') this.$store.dispatch('updateUser', { name: this.text });
+      if (this.model === 'name') this.updateUser({ name: this.text });
       if (this.model === 'telephone') this.maskTelephone();
-      if (this.model === 'github') this.$store.dispatch('updateUser', { github: this.text });
-      if (this.model === 'email') this.$store.dispatch('updateUser', { email: this.text });
-      if (this.model === 'password') this.$store.dispatch('updateUser', { password: this.text });
+      if (this.model === 'github') this.updateUser({ github: this.text });
+      if (this.model === 'email') this.updateUser({ email: this.text });
+      if (this.model === 'password') this.updateUser({ password: this.text });
     },
   },
   methods: {
+    ...mapActions(['updateUser']),
     maskTelephone() {
       this.text = this.text.replace(/\D/g, '');
       if (this.text.length === 11) {
