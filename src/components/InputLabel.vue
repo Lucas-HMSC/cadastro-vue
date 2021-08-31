@@ -2,6 +2,13 @@
   <div class="input-group">
     <label>{{ label }}</label>
     <input 
+      v-if='value'
+      :value='value'
+      :type='type'
+      disabled
+    >
+    <input 
+      v-else
       :type='type'
       v-model='text'
       :placeholder='placeholder'
@@ -18,6 +25,7 @@ export default {
     model: String,
     type: String,
     placeholder: String,
+    value: String,
   },
   data: () => ({
     text: '',

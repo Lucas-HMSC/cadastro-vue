@@ -1,5 +1,7 @@
 <template>
-  <h2>{{ text }}</h2>
+  <h2>
+    {{ text }}<span v-if='name'>&nbsp;{{ name }}</span>
+  </h2>
 </template>
 
 <script>
@@ -7,6 +9,7 @@ export default {
   name: 'TitleForm',
   props: {
     text: String,
+    name: '',
   }
 }
 </script>
