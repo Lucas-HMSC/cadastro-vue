@@ -6,19 +6,19 @@
     </section>
     <section class="sidebar-right">
       <InputPromo />
-      <LoginSucess />
+      <LoginSuccess />
     </section>
   </div>
 </template>
 
 <script>
-import LoginSucess from '@/components/LoginSuccess.vue';
+import LoginSuccess from '@/components/LoginSuccess.vue';
 import InputPromo from '@/components/InputPromo.vue';
 
 export default {
   name: 'Home',
   components: {
-    LoginSucess,
+    LoginSuccess,
     InputPromo,
   },
 }
