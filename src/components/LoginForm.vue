@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <SectionForm>
     <TitleForm 
       text='Entrar'
     />
@@ -26,13 +26,14 @@
     <RouterLink to='/'>
       Criar uma conta
     </RouterLink>
-  </section>
+  </SectionForm>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 import ButtonLarge from '@/components/ButtonLarge.vue';
+import SectionForm from '@/components/SectionForm.vue';
 import InputLabel from '@/components/InputLabel.vue';
 import TitleForm from '@/components/TitleForm.vue';
 
@@ -41,7 +42,8 @@ export default {
   components: {
     ButtonLarge,
     InputLabel,
-    TitleForm
+    TitleForm,
+    SectionForm
   },
   computed: {
     ...mapState(['user']),
@@ -60,9 +62,5 @@ export default {
 </script>
 
 <style lang="scss" scoped> 
-.container {
-  background: #FFF;
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
+
 </style>

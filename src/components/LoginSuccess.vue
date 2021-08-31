@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <SectionForm>
     <TitleForm 
       text='Bem vindo(a)'
       :name='user.name'
@@ -34,13 +34,14 @@
       styles='background: #DA514D'
       :handleClick='sair' 
     />
-  </section>
+  </SectionForm>
 </template>
 
 <script>
 import { mapState } from 'vuex';
 
 import ButtonLarge from '@/components/ButtonLarge.vue';
+import SectionForm from '@/components/SectionForm.vue';
 import InputLabel from '@/components/InputLabel.vue';
 import TitleForm from '@/components/TitleForm.vue';
 
@@ -52,7 +53,8 @@ export default {
   components: {
     ButtonLarge,
     InputLabel,
-    TitleForm
+    TitleForm,
+    SectionForm
   },
   methods: {
     async sair() {
@@ -64,9 +66,5 @@ export default {
 </script>
 
 <style lang="scss" scoped> 
-.container {
-  background: #FFF;
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
+
 </style>

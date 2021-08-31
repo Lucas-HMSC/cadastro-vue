@@ -1,5 +1,5 @@
 <template>
-  <section class="container">
+  <SectionForm>
     <TitleForm 
       text='Cadastrar' 
     />
@@ -47,12 +47,13 @@
     <RouterLink to='/login'>
       Ja sou cadastrado!
     </RouterLink>
-  </section>
+  </SectionForm>
 </template>
 
 <script>
-import InputLabel from '@/components/InputLabel.vue';
 import ButtonLarge from '@/components/ButtonLarge.vue';
+import SectionForm from '@/components/SectionForm.vue';
+import InputLabel from '@/components/InputLabel.vue';
 import TitleForm from '@/components/TitleForm.vue';
 
 export default {
@@ -60,7 +61,8 @@ export default {
   components: {
     ButtonLarge,
     InputLabel,
-    TitleForm
+    TitleForm,
+    SectionForm
   },
   methods: {
     async register() {
@@ -76,9 +78,5 @@ export default {
 </script>
 
 <style lang="scss" scoped> 
-.container {
-  background: #FFF;
-  border-radius: 0.5rem;
-  padding: 1rem;
-}
+
 </style>
